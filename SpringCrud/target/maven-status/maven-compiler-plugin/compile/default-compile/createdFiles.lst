@@ -1,0 +1,5 @@
+web\service\UserService.class
+web\dao\UserDAO.class
+web\dao\UserDAOImpl.class
+web\service\UserServiceImpl.class
+web\model\User.class

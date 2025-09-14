@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New User</title>
+  <style>
+    body { font-family: Arial; margin: 20px; background: #f9f9f9; }
+    label { display: block; margin: 5px 0; }
+    input { padding: 5px; margin-bottom: 10px; width: 200px; }
+    .btn-submit { background: #4CAF50; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h1>Create New User</h1>
+
+<form th:action="@{/users}" th:object="${user}" method="post">
+  <!-- CSRF token -->
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+  <label for="name">Enter name:</label>
+  <input type="text" th:field="*{name}" id="name" required/>
+
+  <label for="surname">Enter surname:</label>
+  <input type="text" th:field="*{surname}" id="surname" required/>
+
+  <label for="age">Enter age:</label>
+  <input type="number" th:field="*{age}" id="age" min="0" required/>
+
+  <br/>
+  <input type="submit" value="Create" class="btn-submit"/>
+</form>
+
+<br/>
+<a th:href="@{/users}">Back to list</a>
+
+</body>
+</html>

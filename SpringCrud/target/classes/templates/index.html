@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f9f9f9; }
+        h1 { color: #333; }
+        a { text-decoration: none; color: #2196F3; }
+        a:hover { text-decoration: underline; }
+        .user-list { margin-top: 15px; }
+        .user-item { margin: 5px 0; }
+        .btn-new { background: #4CAF50; color: white; padding: 5px 10px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<h1>Users</h1>
+
+<div class="user-list" th:each="user : ${users}">
+    <div class="user-item">
+        <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a>
+    </div>
+</div>
+
+<br/>
+<a href="/users/new" class="btn-new">New user</a>
+
+</body>
+</html>
