@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .logout {
+            float: right;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.8;
+        }
+        
+        .info-section {
+            background-color: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .info-section h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .info-section p {
+            color: #155724;
+            margin: 5px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .role-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 2px;
+            display: inline-block;
+        }
+        
+        .role-admin {
+            background-color: #dc3545;
+        }
+        
+        .role-user {
+            background-color: #007bff;
+        }
+        
+        .actions {
+            white-space: nowrap;
+        }
+        
+        .actions .btn {
+            padding: 5px 10px;
+            margin: 2px;
+            font-size: 12px;
+        }
+        
+        .actions form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logout">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-secondary">Выйти</button>
+            </form>
+        </div>
+
+        <h1>Админ панель</h1>
+        
+        <div class="info-section">
+            <h3>Доступ только для администраторов</h3>
+            <p>Вы вошли в систему с правами администратора</p>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <a th:href="@{/admin/new}" class="btn btn-success">Создать пользователя</a>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 20px;">Список пользователей</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Возраст</th>
+                    <th>Логин</th>
+                    <th>Email</th>
+                    <th>Роли</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.surname}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <span th:each="role : ${user.roles}" 
+                              th:class="'role-badge ' + (${role.name} == 'ROLE_ADMIN' ? 'role-admin' : 'role-user')"
+                              th:text="${role.name}">
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <a th:href="@{/admin/{id}(id=${user.id})}" class="btn btn-primary">Просмотр</a>
+                        <a th:href="@{/admin/{id}/edit(id=${user.id})}" class="btn btn-warning">Редактировать</a>
+                        <form th:action="@{/admin/{id}/delete(id=${user.id})}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" 
+                                    onclick="return confirm('Удалить пользователя?')">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a th:href="@{/user}" class="btn btn-secondary">Пользовательская панель</a>
+            <a th:href="@{/}" class="btn btn-secondary">На главную</a>
+        </div>
+    </div>
+</body>
+</html>

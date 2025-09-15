@@ -1,0 +1,17 @@
+ru\itmentor\spring\boot_security\demo\controller\AdminRestController.class
+ru\itmentor\spring\boot_security\demo\model\Role.class
+ru\itmentor\spring\boot_security\demo\SpringBootSecurityDemoApplication.class
+ru\itmentor\spring\boot_security\demo\controller\HelloController.class
+ru\itmentor\spring\boot_security\demo\controller\UserController.class
+ru\itmentor\spring\boot_security\demo\service\UserServiceImpl.class
+ru\itmentor\spring\boot_security\demo\dao\UserDAO.class
+ru\itmentor\spring\boot_security\demo\model\User.class
+ru\itmentor\spring\boot_security\demo\service\RoleServiceImpl.class
+ru\itmentor\spring\boot_security\demo\service\UserDetailsServiceImpl.class
+ru\itmentor\spring\boot_security\demo\configs\SuccessUserHandler.class
+ru\itmentor\spring\boot_security\demo\controller\LogoutController.class
+ru\itmentor\spring\boot_security\demo\configs\WebSecurityConfig.class
+ru\itmentor\spring\boot_security\demo\configs\MvcConfig.class
+ru\itmentor\spring\boot_security\demo\controller\UserRestController.class
+ru\itmentor\spring\boot_security\demo\service\RoleService.class
+ru\itmentor\spring\boot_security\demo\dao\RoleDAO.class

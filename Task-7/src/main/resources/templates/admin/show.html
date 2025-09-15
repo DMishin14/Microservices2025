@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.8;
+        }
+        
+        .user-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 3px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            width: 100px;
+            color: #495057;
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #333;
+        }
+        
+        .role-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 2px;
+            display: inline-block;
+        }
+        
+        .role-admin {
+            background-color: #dc3545;
+        }
+        
+        .role-user {
+            background-color: #007bff;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Просмотр пользователя</h1>
+        
+        <div class="user-info">
+            <div class="info-row">
+                <div class="info-label">ID:</div>
+                <div class="info-value" th:text="${user.id}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Имя:</div>
+                <div class="info-value" th:text="${user.name}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Фамилия:</div>
+                <div class="info-value" th:text="${user.surname}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Возраст:</div>
+                <div class="info-value" th:text="${user.age}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Логин:</div>
+                <div class="info-value" th:text="${user.username}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email:</div>
+                <div class="info-value" th:text="${user.email}"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Роли:</div>
+                <div class="info-value">
+                    <span th:each="role : ${user.roles}" 
+                          th:class="'role-badge ' + (${role.name} == 'ROLE_ADMIN' ? 'role-admin' : 'role-user')"
+                          th:text="${role.name}">
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a th:href="@{/admin/{id}/edit(id=${user.id})}" class="btn btn-warning">Редактировать</a>
+            <a th:href="@{/admin}" class="btn btn-secondary">Назад к списку</a>
+        </div>
+    </div>
+</body>
+</html>
