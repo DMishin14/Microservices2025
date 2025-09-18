@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.itm.space.backendresources.controller.UserControllerIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.369 s - in com.itm.space.backendresources.controller.UserControllerIntegrationTest

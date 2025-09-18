@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: com.itm.space.backendresources.service.UserServiceIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 3.025 s <<< FAILURE! - in com.itm.space.backendresources.service.UserServiceIntegrationTest
+createUser_WithValidRequest_ShouldCreateUserSuccessfully  Time elapsed: 0.993 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke "Object.equals(Object)" because the return value of "javax.ws.rs.core.Response.getStatusInfo()" is null
+	at com.itm.space.backendresources.service.UserServiceIntegrationTest.createUser_WithValidRequest_ShouldCreateUserSuccessfully(UserServiceIntegrationTest.java:122)
+Caused by: java.lang.NullPointerException: Cannot invoke "Object.equals(Object)" because the return value of "javax.ws.rs.core.Response.getStatusInfo()" is null
+	at com.itm.space.backendresources.service.UserServiceIntegrationTest.lambda$0(UserServiceIntegrationTest.java:122)
+	at com.itm.space.backendresources.service.UserServiceIntegrationTest.createUser_WithValidRequest_ShouldCreateUserSuccessfully(UserServiceIntegrationTest.java:122)
+
+createUser_WithKeycloakError_ShouldThrowBackendResourcesException  Time elapsed: 0.141 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "javax.ws.rs.core.Response$StatusType.getStatusCode()" because "statusInfo" is null
+	at com.itm.space.backendresources.service.UserServiceIntegrationTest.createUser_WithKeycloakError_ShouldThrowBackendResourcesException(UserServiceIntegrationTest.java:149)
+
